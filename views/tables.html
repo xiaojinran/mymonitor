@@ -558,8 +558,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    {{ range .messages}}
                                         <tr class="gradeX">
-                                            <td>Amaze UI 模式窗口</td>
+                                            <td>{{ .}}</td>
                                             <td>张鹏飞</td>
                                             <td>2016-09-26</td>
                                             <td>
@@ -573,6 +574,8 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                    {{end}}
+
                                         <tr class="even gradeC">
                                             <td>有适配微信小程序的计划吗</td>
                                             <td>天纵之人</td>

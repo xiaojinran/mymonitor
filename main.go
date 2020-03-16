@@ -1,8 +1,10 @@
 package main
 
 import (
-	_ "mymonitor/routers"
 	"github.com/astaxie/beego"
+	_ "mymonitor/models"
+	_ "mymonitor/routers"
+	_ "mymonitor/models"
 )
 
 func main() {
