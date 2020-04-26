@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DataV</title>
+  <script src="https://unpkg.com/vue"></script>
+  <!--调试版-->
+  <script src="https://unpkg.com/@jiaminghi/data-view/dist/datav.map.vue.js"></script>
+  <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+ </head>
+<body>
+<div id="full">
+  <dv-full-screen-container>
+
+
+
+  </dv-full-screen-container>
+</div>
+<div id="demo">
+  <dv-water-level-pond :config="config" style="width:150px;height:200px" />
+</div>
+<script>
+  var full = new Vue({
+    el: '#full'
+
+  })
+</script>
+
+<script>
+  var app = new Vue({
+    el: '#demo',
+    data: {
+      "config": {
+
+        "data": [85, 15],
+        "shape": "round"
+
+      }
+    },
+    methods :{
+      getdata: function(){
+        axios
+                .get('/static/test.json')
+                .then(response => (this.config = response.data))
+                .catch(function (error) { // 请求失败处理
+                  console.log(error);
+                });
+      }
+
+    },
+    mounted() {
+      this.timer = setInterval(()=>{this.getdata();},5000);
+      //   this.getdata();
+    }
+  })
+</script>
+
+<div id="chart">
+  <dv-charts :option="option" style="width:250px;height:200px;background: #0C0C0C" />
+</div>
+<script>
+    var demo = new Vue({
+      el: '#chart',
+      data: {
+        "option": {
+      title: {
+
+        style: {
+          fill: '#fff'
+        }
+      },
+      series: [
+        {
+          type: 'gauge',
+          data: [ { name: 'itemA', value: 15 } ],
+          center: ['50%', '55%'],
+          axisLabel: {
+            formatter: '{value}%',
+            style: {
+              fill: '#fff'
+            }
+          },
+          axisTick: {
+            style: {
+              stroke: '#fff'
+            }
+          },
+          animationCurve: 'easeInOutBack'
+        }
+      ]
+    }
+      },
+      methods :{
+        getdata: function(){
+          axios
+                  .get('/static/demo.json')
+                  .then(response => (this.option.series[0].data = response.data  ))
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+        }
+
+      },
+      mounted() {
+        this.timer = setInterval(()=>{this.getdata();},1000);
+       // this.getdata();
+      }
+    })
+  </script>
+
+<div id="process">
+  <dv-percent-pond :config="config" style="width:200px;height:100px;" />
+</div>
+<script>
+  var process = new Vue({
+    el: '#process',
+    data: {
+      "config": {
+    colors :"#cccccc",
+    value: 33
+
+
+      }
+    },
+    methods :{
+      getdata: function(){
+        axios
+                .get('/static/process.json')
+                .then(response => (this.config = response.data))
+                .catch(function (error) { // 请求失败处理
+                  console.log(error);
+                });
+      }
+
+    },
+    mounted() {
+      this.timer = setInterval(()=>{this.getdata();},5000);
+      //   this.getdata();
+    }
+  })
+</script>
+
+<div id="table">
+  <dv-scroll-board :config="config" style="width:500px;height:220px" />
+</div>
+<script>
+  var table = new Vue({
+    el: '#table',
+    data: {
+      "config": {
+        header: ['列1', '列2', '列3'],
+        data: [
+          ['行1列1', '行1列2', '行1列3'],
+          ['行2列1', '行2列2', '行2列3'],
+          ['行3列1', '行3列2', '行3列3'],
+          ['行4列1', '行4列2', '行4列3'],
+          ['行5列1', '行5列2', '行5列3'],
+          ['行6列1', '行6列2', '行6列3'],
+          ['行7列1', '行7列2', '行7列3'],
+          ['行8列1', '行8列2', '行8列3'],
+          ['行9列1', '行9列2', '行9列3'],
+          ['行10列1', '行10列2', '行10列3']
+        ],
+        index: true,
+        columnWidth: [50],
+        align: ['center']
+
+
+      }
+    },
+    methods :{
+      getdata: function(){
+        axios
+                .get('/static/process.json')
+                .then(response => (this.config = response.data))
+                .catch(function (error) { // 请求失败处理
+                  console.log(error);
+                });
+      }
+
+    },
+    mounted() {
+      //this.timer = setInterval(()=>{this.getdata();},5000);
+      //   this.getdata();
+    }
+  })
+</script>
+</body>
+</html>

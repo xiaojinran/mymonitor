@@ -1,0 +1,139 @@
+
+<div class="tpl-content-wrapper">
+
+    <div class="container-fluid am-cf">
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 商品计划购买清单 <small>plan</small></div>
+                <p class="page-header-description">该页面可以关注需要购买产品的价格</p>
+            </div>
+            <div class="am-u-lg-3 tpl-index-settings-button">
+                <!--   <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button> -->
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row-content am-cf">
+
+
+        <div class="row">
+
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-5">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">添加产品</div>
+                        <div class="widget-function am-fr">
+                            <a href="javascript:;" class="am-icon-cog"></a>
+                        </div>
+                    </div>
+                    <div class="widget-body am-fr">
+
+                        <form class="am-form tpl-form-line-form" method="post" action="/v1/product/add">
+
+                            <div class="am-form-group">
+                                <label for="user-intro" class="am-u-sm-3 am-form-label">名称</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="" rows="4" id="user-intro" placeholder="名称" name="name">
+                                </div>
+                                <label for="user-intro" class="am-u-sm-3 am-form-label">商城</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="" rows="4" id="user-intro" placeholder="商城" name="platform">
+                                </div>
+                                <label for="user-intro" class="am-u-sm-3 am-form-label">类型</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="" rows="4" id="user-intro" placeholder="类型" name="type">
+                                </div>
+                                <label for="user-intro" class="am-u-sm-3 am-form-label">链接</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="" rows="4" id="user-intro" placeholder="url链接" name="url">
+                                </div>
+                                <label for="user-intro" class="am-u-sm-3 am-form-label">价格</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="" rows="4" id="user-intro" placeholder="价格" name="price">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">添加</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 弹窗 -->
+
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">计划产品清单</div>
+                        <div class="widget-function am-fr">
+                            <a href="javascript:;" class="am-icon-cog"></a>
+                        </div>
+                    </div>
+                    <div class="widget-body  widget-body-lg am-fr">
+                        <div class="am-scrollable-horizontal ">
+                            <table width="100%" class="am-table am-table-compact am-text-nowrap tpl-table-black " id="example-r">
+                                <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th>平台</th>
+                                    <th>类型</th>
+                                    <th>链接地址</th>
+                                    <th>价格</th>
+                                    <th>时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {{ range .products }}
+                                    <tr class="gradeX">
+                                        <td> {{ .Name }}</td>
+                                        <td>{{ .Platform }}</td>
+                                        <td>{{ .Type }}</td>
+                                        <td><a href="{{ .Url }}" target="_blank">点击跳转</a></td>
+                                        <td>{{ .Price }}</td>
+                                        <td>{{ .Time }}</td>
+                                        <td>
+                                            <div class="tpl-table-black-operation">
+                                                <a href="/v1/product/?delid={{ .Id }}" class="tpl-table-black-operation-del">
+                                                    <i class="am-icon-trash"></i> 删除
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {{ end }}
+
+
+                                <!-- more data -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+</div>
+</div>
+</div>
+
+
+<script src="/assets/js/myitmonitor.js"></script>

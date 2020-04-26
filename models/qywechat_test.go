@@ -1,4 +1,4 @@
-package utils
+package models
 
 import "testing"
 
@@ -25,14 +25,14 @@ func TestSendToUser(t *testing.T) {
 	SendToUser("xiaojinran","这是第三条测试信息",qyToken)
 }
 
-func TestGetAllUser(t *testing.T) {
+func TestGetAllWXUser(t *testing.T) {
 	qyinfo := &QyInfo{
 		Corpid:"ww1773d8b72a5648ff",
 		Corpsecret:"SK8xLJ9AnUCXYYhLucUWZqjb3Nk4Mh-xjvYd_XJcHT0",
 		Agentid:1000003,
 	}
 	qyToken := GetQyToken(qyinfo)
-	qylist := GetAllUser(qyToken)
+	qylist := GetAllWXUser(qyToken)
 	for k,v :=range qylist.UserList {
 		t.Log(k,v)
 	}

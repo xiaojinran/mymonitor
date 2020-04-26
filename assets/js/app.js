@@ -1,12 +1,12 @@
 $(function() {
     // 读取body data-type 判断是哪个页面然后执行相应页面方法，方法在下面。
-    var dataType = $('body').attr('data-type');
-    console.log(dataType);
-    for (key in pageData) {
-        if (key == dataType) {
-            pageData[key]();
-        }
-    }
+ //   var dataType = $('body').attr('data-type');
+ //   console.log(dataType);
+ //   for (key in pageData) {
+ //       if (key == dataType) {
+        //    pageData[key]();
+ //       }
+ //   }
     //     // 判断用户是否已有自己选择的模板风格
     //    if(storageLoad('SelcetColor')){
     //      $('body').attr('class',storageLoad('SelcetColor').Color)
@@ -363,3 +363,85 @@ $('.sidebar-nav-sub-title').on('click', function() {
         .end()
         .find('.sidebar-nav-sub-ico').toggleClass('sidebar-nav-sub-ico-rotate');
 })
+
+
+var myChart = echarts.init(document.getElementById('main'));
+// 显示标题，图例和空的坐标轴
+myChart.setOption({
+    tooltip: {},
+    legend: {
+        data:['销量']
+    },
+    xAxis: {
+        data: []
+    },
+    yAxis: {},
+    series: [{
+        name: '销量',
+        type: 'bar',
+        data: []
+    }]
+});
+
+// 异步加载数据
+function accessData(){
+    $.get('/v1/data/sales').done(function (data) {
+        // 填入数据
+        myChart.setOption({
+            xAxis: {
+                data: data.catalog
+            },
+            series: [{
+                // 根据名字对应到相应的系列
+                name: '销量',
+                data: data.count
+            }]
+        });
+    });
+}
+
+var echartsA = echarts.init(document.getElementById('tpl-echarts'));
+option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    grid: {
+        top: '3%',
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+    }],
+    yAxis: [{
+        type: 'value'
+    }],
+    textStyle: {
+        color: '#838FA1'
+    },
+    series: [{
+        name: '邮件营销',
+        type: 'line',
+        stack: '总量',
+        areaStyle: { normal: {} },
+        data: [120, 132, 101, 134, 90],
+        itemStyle: {
+            normal: {
+                color: '#1cabdb',
+                borderColor: '#1cabdb',
+                borderWidth: '2',
+                borderType: 'solid',
+                opacity: '1'
+            },
+            emphasis: {
+
+            }
+        }
+    }]
+};
+
+echartsA.setOption(option);

@@ -3,34 +3,9 @@
 
     <div class="container-fluid am-cf">
         <div class="row">
-           <div class="am-u-sm-12 am-u-md-12">
-               <div class="am-u-sm-12 am-u-md-12" style="height: 100px">
-                   <div id="app">
-                       <dv-border-box-1>欢迎使用一体化运维平台</dv-border-box-1>
-                   </div>
-                   <script>
-                       var app = new Vue({
-                           el: '#app'
-                       })
-                   </script>
-                   <style>
-                       html, body, #app {
-                           width: 100%;
-                           height: 100%;
-                           margin: 0px;
-                           padding: 0px;
-                       }
-
-                       .border-box-content {
-                           color: rgb(66,185,131);
-                           font-size: 40px;
-                           font-weight: bold;
-                           display: flex;
-                           justify-content: center;
-                           align-items: center;
-                       }
-                   </style>
-               </div>
+           <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 部件首页 <small>Amaze UI</small></div>
+                <p class="page-header-description">Amaze UI 含近 20 个 CSS 组件、20 余 JS 组件，更有多个包含不同主题的 Web 组件。</p>
             </div>
            <div class="am-u-lg-3 tpl-index-settings-button">
              <!--   <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button> -->
@@ -40,43 +15,33 @@
     <div class="row-content am-cf">
         <div class="row  am-cf">
             <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
-                <div class="widget am-cf" >
-                    <div id="app1">
-                        <dv-digital-flop :config="config" style="width:200px;height:50px;" />
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">月度财务收支计划</div>
+                        <div class="widget-function am-fr">
+                            <a href="javascript:;" class="am-icon-cog"></a>
+                        </div>
                     </div>
-                    <script>
-                        new Vue({
-                            el: '#app1',
-                            data : {
-                                "config":{
-                                    "number": [105],
-                                    "content": "{nt}个"
-                                }
-                            },
-                            methods: {
-                                getdata: function() {
-                                    axios
-                                        .get('/static/test.json')
-                                        .then(response => (this.config = response.data))
-                                        .catch(function (error) { // 请求失败处理
-                                            console.log(error);
-                                        });
-                                }
-                            },
-                            mounted() {
-                                //this.timer = setInterval(()=>{this.getdata();},1000);
-                                this.getdata();
-                            }
+                    <div class="widget-body am-fr">
+                        <div class="am-fl">
+                            <div class="widget-fluctuation-period-text">
+                                ￥61746.45
+                                <button class="widget-fluctuation-tpl-btn">
+                                    <i class="am-icon-calendar"></i>
+                                    更多月份
+                                </button>
+                            </div>
+                        </div>
+                        <div class="am-fr am-cf">
+                            <div class="widget-fluctuation-description-amount text-success" am-cf>
+                                +￥30420.56
 
-
-                        })
-                    </script>
-
-
-
-
-
-
+                            </div>
+                            <div class="widget-fluctuation-description-text am-text-right">
+                                8月份收入
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

@@ -1,0 +1,106 @@
+
+
+
+<div class="tpl-content-wrapper">
+
+    <div class="container-fluid am-cf">
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 股票信息 <small>查询</small></div>
+                <p class="page-header-description">提交股票代码，可以查询股票的信息。</p>
+            </div>
+
+            <div class="am-u-lg-3 tpl-index-settings-button">
+                <!--   <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button> -->
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row-content am-cf">
+
+
+        <div class="row am-cf">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">股票查询</div>
+                        <div class="widget-function am-fr">
+                            <a href="javascript:;" class="am-icon-cog"></a>
+                        </div>
+                    </div>
+                    <div class="widget-body am-fr">
+
+                        <form class="am-form tpl-form-border-form tpl-form-border-br" method="post" url="/stock">
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">股票代码 <span class="tpl-form-line-small-title">Title</span></label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="stockid" placeholder="请输入股票代码" name="stockid">
+                                    <small>请填写股票代码，如sz000002，sh000002。</small>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="row am-cf">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">股票信息</div>
+                        <div class="widget-function am-fr">
+                            <a href="javascript:;" class="am-icon-cog"></a>
+                        </div>
+                    </div>
+                    <div class="widget-body  widget-body-lg am-fr">
+                        <div class="am-scrollable-horizontal ">
+                            <table width="100%" class="am-table am-table-compact am-text-nowrap tpl-table-black " id="example-r">
+                                <thead>
+                                <tr>
+                                    <th>股票代码</th>
+                                    <th>名称</th>
+                                    <th>开盘价</th>
+                                    <th>最新价</th>
+                                    <th>最高价</th>
+                                    <th>最低价</th>
+                                    <th>时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{ range .stock }}
+                                    <tr class="gradeX">
+                                        <td>{{ .Id }}</td>
+                                        <td>{{ .Name }}</td>
+                                        <td>{{ .Start }}</td>
+                                        <td>{{ .Current}} </td>
+                                        <td>{{ .Top}} </td>
+                                        <td>{{ .Down}} </td>
+                                        <td>{{ .Time}} </td>
+                                    </tr>
+                                {{ end }}
+                                <!-- more data -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

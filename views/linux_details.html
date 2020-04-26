@@ -1,0 +1,364 @@
+<!-- 内容区域 -->
+<div class="tpl-content-wrapper">
+
+    <div class="container-fluid am-cf">
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> Linux <small> x.x.x.x - 详细信息</small></div>
+
+            </div>
+            <div class="am-u-lg-3 tpl-index-settings-button">
+                <!--   <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button> -->
+            </div>
+        </div>
+    </div>
+    <div class="row-content am-cf">
+
+        <div class="row am-cf">
+            <div class="am-u-sm-12 am-u-md-12">
+                <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">资产名片</div>
+
+                        </div>
+                        <div class="widget-body am-fr">
+                            <div class="am-fl">
+                                <div class="widget-fluctuation-period-text">
+                                  管理员
+                                    <div class="widget-fluctuation-description-text am-text-left">
+                                        姓 名：李伟伟
+                                    </div>
+                                    <div class="widget-fluctuation-description-text am-text-left">
+                                        电 话：150137xxxxx
+                                    </div>
+                                    <div class="widget-fluctuation-description-text am-text-left">
+                                        微 信：xiaojinran555
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-fr am-cf">
+                                <div class="widget-fluctuation-period-text">
+                                    服务器用途
+
+                                </div>
+                                <div class="widget-fluctuation-description-text am-text-right">
+                                    本服务器用于测试
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="am-u-sm-12 am-u-md-6 am-u-lg-2">
+                    <div class="widget widget-primary am-cf">
+                        <div class="widget-statistic-header">
+                            CPU使用率
+                        </div>
+                        <div class="widget-statistic-body">
+                            <div class="widget-statistic-value">
+                                87%
+                            </div>
+                            <div class="widget-statistic-description">
+                                指标描述
+                            </div>
+                            <span class="widget-statistic-icon am-icon-credit-card-alt"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="am-u-sm-12 am-u-md-6 am-u-lg-2">
+                    <div class="widget widget-purple am-cf">
+                        <div class="widget-statistic-header">
+                            内存使用率
+                        </div>
+                        <div class="widget-statistic-body">
+                            <div class="widget-statistic-value">
+                                67%
+                            </div>
+                            <div class="widget-statistic-description">
+                                内存使用
+                            </div>
+                            <span class="widget-statistic-icon am-icon-support"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="am-u-sm-12 am-u-md-6 am-u-lg-2">
+                    <div class="widget widget-primary am-cf">
+                        <div class="widget-statistic-header">
+                            健康度
+                        </div>
+                        <div class="widget-statistic-body">
+                            <div class="widget-statistic-value">
+                                87%
+                            </div>
+                            <div class="widget-statistic-description">
+                                设备健康度
+                            </div>
+                            <span class="widget-statistic-icon am-icon-credit-card-alt"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="am-u-sm-12 am-u-md-6 am-u-lg-2">
+                    <div class="widget widget-purple am-cf">
+                        <div class="widget-statistic-header">
+                            告警数量
+                        </div>
+                        <div class="widget-statistic-body">
+                            <div class="widget-statistic-value">
+                                3
+                            </div>
+                            <div class="widget-statistic-description">
+                                当前设备告警数量
+                            </div>
+                            <span class="widget-statistic-icon am-icon-support"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-12">
+                <div class="am-u-sm-12 am-u-md-6">
+                    <div class="widget am-cf">
+
+                        <div class="widget-body-md widget-body tpl-amendment-echarts am-fr" id="CPU_info">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="am-u-sm-12 am-u-md-6">
+                    <div class="widget am-cf">
+
+                        <div class="widget-body-md widget-body tpl-amendment-echarts am-fr" id="Mem_info">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-12">
+
+                <div class="am-u-sm-12 am-u-md-6">
+                    <div class="widget am-cf">
+                        <div class="widget-body-md widget-body tpl-amendment-echarts am-fr" id="Disk_info">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="am-u-sm-12 am-u-md-6">
+                    <div class="widget am-cf">
+                        <div class="widget-body-md widget-body tpl-amendment-echarts am-fr" id="Process_info">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    option = {
+        title: {
+            text: 'CPU使用率'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['nice', 'idle', 'busy', 'user', 'system']
+        },
+        grid: {
+            left: '0.5%',
+            right: '2%',
+            bottom: '0.5%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+            max : 100,
+            type: 'value'
+        },
+        series: [
+            {
+                name: 'nice',
+                type: 'line',
+
+                data: [0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08]
+            },
+            {
+                name: 'idle',
+                type: 'line',
+
+                data: [99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5]
+            },
+            {
+                name: 'busy',
+                type: 'line',
+
+                data: [99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5]
+            },
+            {
+                name: 'user',
+                type: 'line',
+
+                data: [99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5]
+            },
+            {
+                name: 'system',
+                type: 'line',
+
+                data: [99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5]
+            }
+        ]
+    };
+    var Chart_CPU = echarts.init(document.getElementById('CPU_info'));
+    Chart_CPU.setOption(option)
+</script>
+<script>
+    option = {
+        title: {
+            text: '内存使用率'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['nice', 'idle', 'busy', 'user', 'system']
+        },
+        grid: {
+            left: '0.5%',
+            right: '0.5%',
+            bottom: '0.5%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+            max : 100,
+            type: 'value'
+        },
+        series: [
+            {
+                name: 'nice',
+                type: 'line',
+
+                data: [0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08]
+            },
+            {
+                name: 'idle',
+                type: 'line',
+
+                data: [99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5]
+            },
+            {
+                name: 'busy',
+                type: 'line',
+
+                data: [99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5]
+            },
+            {
+                name: 'user',
+                type: 'line',
+
+                data: [99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5]
+            },
+            {
+                name: 'system',
+                type: 'line',
+
+                data: [55.5, 66.5, 89.5, 49.5, 39.5, 94.5, 34.5]
+            }
+        ]
+    };
+    var Chart_Mem = echarts.init(document.getElementById('Mem_info'));
+    Chart_Mem.setOption(option)
+</script>
+
+<script>
+    option = {
+        title:{
+            text:"磁盘使用率"
+        },
+        xAxis: {
+            type: 'category',
+            data: ['/var', '/', '/home', '/data', '/tmp', '/opt', '/usr']
+        },
+        yAxis: {
+            max: 100,
+            type: 'value'
+        },
+        grid: {
+            left: '0.5%',
+            right: '2%',
+            bottom: '0.5%',
+            containLabel: true
+        },
+        series: [{
+            data: [57, 20, 15, 80, 70, 11, 13],
+            type: 'bar',
+            showBackground: true,
+            backgroundStyle: {
+                color: 'rgba(220, 220, 220, 0.8)'
+            }
+        }]
+    };
+    var Chart_Disk = echarts.init(document.getElementById('Disk_info'));
+    Chart_Disk.setOption(option)
+</script>
+<script>
+    option = {
+        title: {
+            text: '进程使用率Top5'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01],
+            max: 100
+        },
+        yAxis: {
+            type: 'category',
+            data: ['init', 'java', 'test', 'ping', 'klz']
+        },
+        series: [
+            {
+                name: 'CPU使用率',
+                type: 'bar',
+                data: [22, 76,  85, 88,98]
+            }
+        ]
+    };
+    var Chart_Process = echarts.init(document.getElementById('Process_info'));
+    Chart_Process.setOption(option)
+</script>

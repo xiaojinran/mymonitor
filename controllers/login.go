@@ -17,11 +17,12 @@ func (this *LoginController) Post() {
 	//通过sqlite数据库验证账号密码是否正确
      user := models.GetUserByName(this.Input().Get("uname"))
      if user.Pass == this.Input().Get("passwd") {
-	     this.Ctx.Redirect(302, "/")
+	     this.Redirect("/",302)
 	     return
 	
      }else {
-	     this.Ctx.Redirect(302, "/logout")
+     	this.Redirect("/",302)
+	    
 	     return
      }
 

@@ -1,0 +1,217 @@
+
+<div class="tpl-content-wrapper">
+
+    <div class="container-fluid am-cf">
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> Linux运维 <small>请谨慎操作</small></div>
+                <p class="page-header-description">该页面可以实现常用的运维管理操作命令，请在操作过程中务必谨慎，所有操作将会被审计，非管理员用户请立即离开！</p>
+            </div>
+            <div class="am-u-lg-3 tpl-index-settings-button">
+             <!--   <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button> -->
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row-content am-cf">
+
+
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">主机信息</div>
+
+                    </div>
+                    <div class="widget-body am-fr">
+                        <div class="am-fl">
+                            <div class="widget-fluctuation-period-text">
+                                资产信息
+                                <div class="widget-fluctuation-description-text am-text-left">
+                                    IP地址：{{ .host.Host }}
+                                </div>
+                                <div class="widget-fluctuation-description-text am-text-left">
+                                    主机名：zbxsrv
+                                </div>
+                                <div class="widget-fluctuation-description-text am-text-left">
+                                    是否可运维：是
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="widget-fluctuation-period-text">
+                                管理员
+                                <div class="widget-fluctuation-description-text am-text-left">
+                                    姓 名：李伟伟
+                                </div>
+                                <div class="widget-fluctuation-description-text am-text-left">
+                                    电 话：150137xxxxx
+                                </div>
+                                <div class="widget-fluctuation-description-text am-text-left">
+                                    微 信：xiaojinran555
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-5">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">运维命令</div>
+                        <div class="widget-function am-fr">
+                            <a href="javascript:;" class="am-icon-cog"></a>
+                        </div>
+                    </div>
+                    <div class="widget-body am-fr">
+
+                        <form class="am-form tpl-form-line-form" method="post" action="/v1/linux/ops">
+                            <input type="hidden" name="id" value="{{ .host.Id }}">
+                            <div class="am-form-group">
+                                <label for="user-intro" class="am-u-sm-3 am-form-label">命令</label>
+                                <div class="am-u-sm-9">
+
+
+                                    <textarea class="" rows="4" id="user-intro" placeholder="请输入需执行命令" name="commands"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">执行</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-5">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">传输文件</div>
+                        <div class="widget-function am-fr">
+                            <a href="javascript:;" class="am-icon-cog"></a>
+                        </div>
+                    </div>
+                    <div class="widget-body am-fr">
+
+                        <form method="post" enctype="multipart/form-data" action="" class="am-form tpl-form-line-form">
+
+                            <div class="am-form-group">
+                                <label for="uploadfile" class="am-u-sm-3 am-form-label">文件 <span class="tpl-form-line-small-title">File</span></label>
+                                <div class="am-u-sm-9">
+                                    <input type="file" class="tpl-form-file" id="user-name" placeholder="上传文件">
+
+                                </div>
+
+                            </div>
+                            <div class="am-form-group">
+                                <label for="uploadfile" class="am-u-sm-3 am-form-label">目标路径 <span class="tpl-form-line-small-title">Path</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="input" class="tpl-form-input" id="user-name" placeholder="绝对路径">
+
+                            </div>
+                            <div class="am-form-group">
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">上传</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 弹窗 -->
+        <div id="myModal" class="modal">
+            <!-- 弹窗内容 -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h1>内容</h1>
+                </div>
+                <div class="modal-body">
+                    命令返回结果
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">历史执行结果</div>
+                        <div class="widget-function am-fr">
+                            <a href="javascript:;" class="am-icon-cog"></a>
+                        </div>
+                    </div>
+                    <div class="widget-body  widget-body-lg am-fr">
+                        <div class="am-scrollable-horizontal ">
+                            <table width="100%" class="am-table am-table-compact am-text-nowrap tpl-table-black " id="example-r">
+                                <thead>
+                                <tr>
+                                    <th>状态</th>
+                                    <th>执行时间</th>
+                                    <th>执行人</th>
+                                    <th>类型</th>
+                                    <th>内容</th>
+                                    <th>结果返回</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {{ range .result }}
+                                    <tr class="gradeX">
+                                        <td> {{ .Success }}</td>
+                                        <td>{{ .Time }}</td>
+                                        <td>张鹏飞</td>
+                                        <td>{{ .Type }}</td>
+                                        <td>{{ .Content }}</td>
+                                        <td>
+                                            <div class="tpl-table-black-operation">
+
+                                                <!-- 打开弹窗按钮 -->
+                                                <button id="myBtn" class="am-btn am-btn-primary tpl-btn-bg-color-success">查看</button>
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {{ end }}
+
+
+                                <!-- more data -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+</div>
+</div>
+</div>
+
+
+<script src="/assets/js/myitmonitor.js"></script>

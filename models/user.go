@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"github.com/astaxie/beego/orm"
 )
 
@@ -27,8 +26,6 @@ func GetUserByName(name string) (user *User){
 func GetAllUser() ([]*User){
 	var users []*User
 	o :=orm.NewOrm()
-	num, err := o.QueryTable("user").All(&users)
-	fmt.Println(num)
-	fmt.Println(err)
+	o.QueryTable("user").All(&users)
 	return users
 }

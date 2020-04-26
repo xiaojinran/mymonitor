@@ -1,4 +1,4 @@
-package utils
+package models
 
 import (
 	bytes2 "bytes"
@@ -15,7 +15,7 @@ type QyInfo struct {
 }
 
 
-
+//企业微信的令牌返回结构体
 type QyToken struct {
 	Errcode int `json:"errcode"`
 	Errmsg string `json:"errmsg"`
@@ -28,6 +28,7 @@ type Content struct {
 	Content string `json:"content"`
 }
 
+//微信提交内容结构体
 type AppMsg struct {
 	ToUser  string `json:"touser,omitempty"`
 	ToParty string `json:"toparty,omitempty"`
@@ -49,6 +50,12 @@ type QywechatUserlist struct {
 	UserList []*QywechatUser `json:"userlist"`
 }
 
+type QywebchatRet struct {
+	Errcode int `json:"errcode"`
+	Errmsg string `json:"errmsg"`
+	InvalidUser string `json:"invaliduser"`
+}
+
 
 func GetQyToken(info *QyInfo)(token *QyToken){
 	url:= fmt.Sprintf("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=%s&corpsecret=%s",info.Corpid,info.Corpsecret)
@@ -62,7 +69,7 @@ func GetQyToken(info *QyInfo)(token *QyToken){
 	return
 }
 
-func SendToUser(user string, msg string, token *QyToken) {
+func SendToUser(user string, msg string, token *QyToken) (ret *QywebchatRet){
 	content := &Content{Content:msg}
 	appmsg := &AppMsg{
 		ToUser:  user,
@@ -70,21 +77,21 @@ func SendToUser(user string, msg string, token *QyToken) {
 		Agentid: token.Agentid,
 		Text: content,
 	}
-	SendData(appmsg,token)
+	ret = SendData(appmsg,token)
+	return
 	
 }
 
-func GetAllUser(token *QyToken) (Qy *QywechatUserlist){
+func GetAllWXUser(token *QyToken) (Qy *QywechatUserlist){
 	url := "https://qyapi.weixin.qq.com/cgi-bin/user/simplelist?access_token="+ token.Access_token + "&department_id=1"
 	httpclient := &http.Client{}
 	resp, _ := httpclient.Get(url)
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println(string(body))
 	json.Unmarshal(body,&Qy)
 	return
 }
 
-func SendData(msg *AppMsg, token *QyToken) {
+func SendData(msg *AppMsg, token *QyToken) (ret *QywebchatRet){
 	httpclient := &http.Client{}
 	url := "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=" + token.Access_token
 	bytes, _ := json.Marshal(msg)
@@ -93,6 +100,7 @@ func SendData(msg *AppMsg, token *QyToken) {
 	resp, _ := httpclient.Post(url, "application/json", bytes2.NewBuffer(bytes))
 	fmt.Println("response Status:", resp.Status)
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println(string(body))
+	json.Unmarshal(body,&ret)
+	return
 }
 

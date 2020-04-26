@@ -1,0 +1,132 @@
+<div class="tpl-content-wrapper">
+
+    <div class="container-fluid am-cf">
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 表单 <small>Amaze UI</small></div>
+                <p class="page-header-description">Amaze UI 有许多不同的表格可用。</p>
+            </div>
+            <div class="am-u-lg-3 tpl-index-settings-button">
+                <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row-content am-cf">
+
+
+        <div class="row">
+
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">添加ssh主机</div>
+                        <div class="widget-function am-fr">
+                            <a href="javascript:;" class="am-icon-cog"></a>
+                        </div>
+                    </div>
+                    <div class="widget-body am-fr">
+
+                        <form method="post"  action="/config/ssh" class="am-form tpl-form-line-form">
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">IP地址 <span class="tpl-form-line-small-title">IPaddr</span></label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入IP地址" name="host">
+                                    <small>请填写IP地址信息。</small>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">用户名 <span class="tpl-form-line-small-title">User</span></label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入用户名" name="user" >
+                                    <small>请填写用户名。</small>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">密码 <span class="tpl-form-line-small-title">Password</span></label>
+                                <div class="am-u-sm-9">
+                                    <input type="password" class="tpl-form-input" id="user-name" placeholder="请输入密码" name="password" >
+                                    <small>请填写密码。</small>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">端口 <span class="tpl-form-line-small-title">Port</span></label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入用户名" value="22" name="port">
+                                    <small>请填写端口号。</small>
+                                </div>
+                            </div>
+
+
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="submit"  class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12" >
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">主机列表</div>
+                        <div class="widget-function am-fr">
+                            <a href="javascript:;" class="am-icon-cog"></a>
+                        </div>
+                    </div>
+                    <div class="widget-body  widget-body-lg am-fr">
+
+                        <table width="100%" class="am-table am-table-compact tpl-table-black " id="example-r">
+                            <thead>
+                            <tr>
+                                <th>主机地址</th>
+                                <th>用户名</th>
+                                <th>密码</th>
+                                <th>端口</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{ range .sshhost }}
+                                <tr class="gradeX">
+                                    <td>{{ .Host }}</td>
+                                    <td>{{ .Username }}</td>
+                                    <td>{{ .Password }}</td>
+                                    <td>{{ .Port }}</td>
+                                    <td>
+                                        <div class="tpl-table-black-operation">
+                                            <a href="/config/ssh?delid={{ .Id }}" class="tpl-table-black-operation-del">
+                                                <i class="am-icon-trash"></i> 删除
+                                            </a>
+                                            <a href="/v1/linux/ops?id={{ .Id }}" class="tpl-table-black-operation-del">
+                                                <i class="am-icon-opera"></i> 运维
+                                            </a>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{ end }}
+
+
+
+
+
+
+                            <!-- more data -->
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
